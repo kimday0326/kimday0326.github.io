@@ -31,20 +31,65 @@ permalink: /posts/
       {% endfor %}
     </div>
   </div>
+  <div id="pagination" class="pagination"></div>
 </div>
 
 <script>
+var POSTS_PER_PAGE = 6;
+var currentPage = 1;
+var currentTag = 'all';
+
+function getAllCards() {
+  return Array.from(document.querySelectorAll('.post-card'));
+}
+
+function getFilteredCards(tag) {
+  return getAllCards().filter(function(card) {
+    if (tag === 'all') return true;
+    var tags = (card.dataset.tags || '').split(',').map(function(t) { return t.trim(); });
+    return tags.includes(tag);
+  });
+}
+
+function renderPage() {
+  var filtered = getFilteredCards(currentTag);
+  var totalPages = Math.max(1, Math.ceil(filtered.length / POSTS_PER_PAGE));
+  var start = (currentPage - 1) * POSTS_PER_PAGE;
+  var end = start + POSTS_PER_PAGE;
+
+  getAllCards().forEach(function(card) { card.hidden = true; });
+  filtered.slice(start, end).forEach(function(card) { card.hidden = false; });
+
+  updatePagination(totalPages);
+}
+
 function filterCards(tag) {
+  currentTag = tag;
+  currentPage = 1;
   document.querySelectorAll('.tag[data-tag]').forEach(function(el) {
     el.classList.toggle('active', el.dataset.tag === tag);
   });
-  document.querySelectorAll('.post-card').forEach(function(card) {
-    if (tag === 'all') {
-      card.hidden = false;
-    } else {
-      var tags = (card.dataset.tags || '').split(',').map(function(t) { return t.trim(); });
-      card.hidden = !tags.includes(tag);
-    }
-  });
+  renderPage();
 }
+
+function goToPage(page) {
+  currentPage = page;
+  renderPage();
+  document.getElementById('card-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updatePagination(totalPages) {
+  var container = document.getElementById('pagination');
+  if (!container) return;
+  if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+  var html = '<button class="page-btn" ' + (currentPage === 1 ? 'disabled' : '') + ' onclick="goToPage(' + (currentPage - 1) + ')">‹ 이전</button>';
+  for (var i = 1; i <= totalPages; i++) {
+    html += '<button class="page-btn' + (i === currentPage ? ' active' : '') + '" onclick="goToPage(' + i + ')">' + i + '</button>';
+  }
+  html += '<button class="page-btn" ' + (currentPage === totalPages ? 'disabled' : '') + ' onclick="goToPage(' + (currentPage + 1) + ')">다음 ›</button>';
+  container.innerHTML = html;
+}
+
+renderPage();
 </script>
