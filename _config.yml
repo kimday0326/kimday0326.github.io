@@ -29,6 +29,7 @@ github_username: kimday0326
 # Build settings
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Sass
 sass:

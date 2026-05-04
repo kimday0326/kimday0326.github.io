@@ -34,16 +34,6 @@
       color: $navy;
     }
 
-    .tags-more {
-      font-size: 0.85rem;
-      color: $muted;
-      border: 1px solid $border;
-      padding: 3px 12px;
-      border-radius: 20px;
-      transition: border-color 0.15s, color 0.15s;
-
-      &:hover { border-color: $navy; color: $navy; }
-    }
   }
 
   .tags-list {
