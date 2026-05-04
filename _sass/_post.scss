@@ -36,9 +36,29 @@
 
     .post-tags {
       display: flex;
-      gap: 6px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
+
+      .tag {
+        display: inline;
+        padding: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        font-size: 0.875rem;
+        font-weight: 400;
+        color: $muted;
+        cursor: default;
+
+        &::before { content: "#"; }
+
+        &:hover, &.active {
+          background: none;
+          color: $muted;
+          border: none;
+        }
+      }
     }
   }
 }
