@@ -1,0 +1,33 @@
+<article class="post-card" data-tags="{{ include.post.tags | join: ',' | downcase }}">
+  <a href="{{ include.post.url | relative_url }}">
+    {% if include.post.thumbnail %}
+      <img class="card-thumbnail" src="{{ include.post.thumbnail | relative_url }}" alt="{{ include.post.title }}">
+    {% else %}
+      <div class="card-thumb-placeholder">
+        <span>{{ include.post.title | slice: 0 }}</span>
+      </div>
+    {% endif %}
+  </a>
+  <div class="card-body">
+    {% if include.post.category %}
+      <span class="card-category">{{ include.post.category }}</span>
+    {% elsif include.post.categories.first %}
+      <span class="card-category">{{ include.post.categories.first }}</span>
+    {% endif %}
+    <a href="{{ include.post.url | relative_url }}">
+      <h3 class="card-title">{{ include.post.title }}</h3>
+    </a>
+    {% if include.post.excerpt %}
+      <p class="card-excerpt">{{ include.post.excerpt | strip_html | truncate: 100 }}</p>
+    {% endif %}
+    <div class="card-meta">
+      <time>{{ include.post.date | date: "%Y.%m.%d" }}</time>
+      {% if include.post.tags.first %}
+        <span class="meta-dot">·</span>
+        {% for tag in include.post.tags limit:2 %}
+          <span class="tag" style="font-size:0.7rem; padding:1px 7px;">{{ tag }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,65 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $white;
+  border-bottom: 1px solid $border;
+  height: $nav-height;
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .site-logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $navy;
+    letter-spacing: -0.03em;
+
+    &:hover { color: $sky; }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: $muted;
+      padding: 6px 16px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+
+      &:hover, &.active {
+        color: $navy;
+        background: $card-bg;
+      }
+    }
+
+    .nav-search-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: $navy;
+      color: $white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 24px;
+      transition: background 0.15s;
+
+      &:hover { background: $navy-dark; }
+
+      .arrow {
+        color: $sky;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+    }
+  }
+}

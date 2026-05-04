@@ -1,0 +1,11 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav>
+      <a class="nav-link{% if page.url == '/posts/' %} active{% endif %}" href="{{ '/posts/' | relative_url }}">Posts</a>
+      <a class="nav-search-btn" href="{{ '/search/' | relative_url }}">
+        Search <span class="arrow">→</span>
+      </a>
+    </nav>
+  </div>
+</header>

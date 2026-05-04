@@ -1,0 +1,55 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="container">
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+  </div>
+</section>
+
+<div class="container">
+  {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
+  {% if all_tags.size > 0 %}
+  <div class="tags-bar">
+    <div class="tags-header">
+      <h2>Tags</h2>
+    </div>
+    <div class="tags-list">
+      <span class="tag active" data-tag="all" onclick="filterCards('all')">전체</span>
+      {% for tag in all_tags %}
+        {% assign t = tag | strip %}
+        {% if t != "" %}
+          <span class="tag" data-tag="{{ t | downcase }}" onclick="filterCards('{{ t | downcase }}')">{{ t }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="posts-section">
+    <h2 class="section-title">Posts</h2>
+    <div class="card-grid" id="card-grid">
+      {% for post in site.posts %}
+        {% include post-card.html post=post %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+function filterCards(tag) {
+  document.querySelectorAll('.tag[data-tag]').forEach(function(el) {
+    el.classList.toggle('active', el.dataset.tag === tag);
+  });
+  document.querySelectorAll('.post-card').forEach(function(card) {
+    if (tag === 'all') {
+      card.hidden = false;
+    } else {
+      var tags = (card.dataset.tags || '').split(',').map(function(t) { return t.trim(); });
+      card.hidden = !tags.includes(tag);
+    }
+  });
+}
+</script>

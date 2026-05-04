@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2026-05-04 16:18:14 +0900
-categories: jekyll update
+title: "Welcome to Jekyll!"
+date: 2026-05-04 16:18:14 +0900
+category: tech
+tags: [jekyll, blog]
+excerpt: "Jekyll 기반의 GitHub Pages 블로그를 시작하는 방법을 소개합니다."
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 

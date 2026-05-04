@@ -21,15 +21,35 @@
 title: kimday0326
 email: ktnqkr01@gmail.com
 description: >-
-  kimday0326's personal site
-baseurl: "" # the subpath of your site, e.g. /blog
+  kimday0326's personal blog
+baseurl: ""
 url: "https://kimday0326.github.io"
 github_username: kimday0326
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
+
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Permalink
+permalink: /:year/:month/:day/:title/
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: page
 
 # Exclude from processing.
 # The following items will not be processed, by default.

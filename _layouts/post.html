@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="post-header">
+  <div class="container">
+    {% if page.category %}
+      <p class="post-category">{{ page.category }}</p>
+    {% elsif page.categories.first %}
+      <p class="post-category">{{ page.categories.first }}</p>
+    {% endif %}
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <time>{{ page.date | date: "%Y.%m.%d" }}</time>
+      {% if page.tags.size > 0 %}
+        <span class="meta-dot">·</span>
+        <div class="post-tags">
+          {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="post-layout">
+    <article class="prose">
+      {{ content }}
+    </article>
+    {% include toc.html %}
+  </div>
+
+  <nav class="post-nav">
+    {% if page.previous %}
+      <a href="{{ page.previous.url | relative_url }}" class="prev">
+        <p class="nav-label">← 이전 글</p>
+        <p class="nav-title">{{ page.previous.title }}</p>
+      </a>
+    {% else %}
+      <span></span>
+    {% endif %}
+
+    {% if page.next %}
+      <a href="{{ page.next.url | relative_url }}" class="next">
+        <p class="nav-label">다음 글 →</p>
+        <p class="nav-title">{{ page.next.title }}</p>
+      </a>
+    {% endif %}
+  </nav>
+</div>
+
+<script src="{{ '/assets/js/toc.js' | relative_url }}"></script>

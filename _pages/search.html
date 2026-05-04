@@ -1,0 +1,21 @@
+---
+layout: default
+title: Search
+permalink: /search/
+---
+
+<div class="search-page">
+  <div class="container">
+    <div class="search-header">
+      <h1>Search</h1>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="제목, 태그로 검색..." autocomplete="off">
+        <span class="search-icon">🔍</span>
+      </div>
+      <p class="search-results-info" id="search-info"></p>
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/search.js' | relative_url }}"></script>
