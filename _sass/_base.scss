@@ -42,6 +42,8 @@ ul, ol { list-style: none; }
 
 // Prose styles (post content)
 .prose {
+  overflow-wrap: break-word;
+
   h1, h2, h3, h4 {
     font-weight: 700;
     color: $navy;
@@ -114,7 +116,10 @@ ul, ol { list-style: none; }
   }
 
   table {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.9rem;

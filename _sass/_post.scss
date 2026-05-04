@@ -21,6 +21,11 @@
     line-height: 1.25;
     max-width: 720px;
     margin: 0 auto 20px;
+    overflow-wrap: break-word;
+
+    @media (max-width: $bp-md) {
+      font-size: 1.75rem;
+    }
   }
 
   .post-meta {
@@ -66,14 +71,16 @@
 // Post layout: content + TOC sidebar
 .post-layout {
   display: grid;
-  grid-template-columns: 1fr 260px;
+  grid-template-columns: minmax(0, 1fr) 260px;
   gap: 48px;
   padding: 48px 0 80px;
   align-items: start;
 
   @media (max-width: $bp-lg) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
+
+  > .prose { min-width: 0; }
 }
 
 // TOC sidebar
